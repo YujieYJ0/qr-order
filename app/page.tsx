@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { CATEGORIES, formatJPY, type CategoryKey } from "./lib/menu";
 import { useMenuData } from "./lib/useMenuData";
@@ -9,7 +9,7 @@ import { useCart } from "./components/CartProvider";
 import CartDrawer from "./components/CartDrawer";
 import MenuImage from "./components/MenuImage";
 
-export default function Home() {
+function HomeContent() {
   const searchParams = useSearchParams();
   const paramCat = searchParams.get("cat") as CategoryKey | null;
   const active = CATEGORIES.find((c) => c.key === paramCat) ?? CATEGORIES[0];
@@ -235,5 +235,13 @@ export default function Home() {
         </div>
       ) : null}
     </main>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<main className=\"min-h-screen bg-transparent\" />}>
+      <HomeContent />
+    </Suspense>
   );
 }

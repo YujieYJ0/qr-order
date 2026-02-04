@@ -1,9 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function OrderSuccessPage() {
+export const dynamic = "force-dynamic";
+
+function OrderSuccessContent() {
   const params = useSearchParams();
   const orderId = params.get("orderId") ?? "";
   const table = params.get("table");
@@ -31,5 +34,13 @@ export default function OrderSuccessPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function OrderSuccessPage() {
+  return (
+    <Suspense fallback={<main className="min-h-screen bg-transparent" />}>
+      <OrderSuccessContent />
+    </Suspense>
   );
 }
