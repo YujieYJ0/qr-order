@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { CATEGORIES, formatJPY, type CategoryKey } from "../../lib/menu";
 import { useMenuData } from "../../lib/useMenuData";
@@ -9,7 +9,7 @@ import { useCart } from "../../components/CartProvider";
 import CartDrawer from "../../components/CartDrawer";
 import MenuImage from "../../components/MenuImage";
 
-export default function TablePage() {
+function TablePageContent() {
   const routeParams = useParams();
   const tableCodeParam = Array.isArray(routeParams?.tableCode)
     ? routeParams?.tableCode[0]
@@ -225,5 +225,13 @@ export default function TablePage() {
         </div>
       ) : null}
     </main>
+  );
+}
+
+export default function TablePage() {
+  return (
+    <Suspense fallback={<main className="min-h-screen bg-transparent" />}>
+      <TablePageContent />
+    </Suspense>
   );
 }

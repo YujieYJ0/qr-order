@@ -240,7 +240,7 @@ function HomeContent() {
 
 export default function Home() {
   return (
-    <Suspense fallback={<main className=\"min-h-screen bg-transparent\" />}>
+    <Suspense fallback={<main className="min-h-screen bg-transparent" />}>
       <HomeContent />
     </Suspense>
   );
