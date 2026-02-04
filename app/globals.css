@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --phone-width: 420px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  max-width: var(--phone-width);
+  margin: 0 auto;
+  border-radius: 28px;
+  box-shadow: 0 18px 48px rgba(110, 80, 40, 0.12);
+  padding-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/images/pattern.png");
+  background-repeat: repeat;
+  background-size: 300px auto;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+}
+
+main > * {
+  position: relative;
+  z-index: 1;
+}
+
+.phone-fixed {
+  position: fixed;
+  right: calc(50% - (var(--phone-width) / 2) + 16px);
+  bottom: 16px;
+}
+
+.phone-bottom {
+  position: fixed;
+  left: calc(50% - (var(--phone-width) / 2));
+  right: calc(50% - (var(--phone-width) / 2));
+  bottom: 0;
+}
+
+.daily-mini {
+  padding: 8px 10px;
+  border-radius: 16px;
+  font-size: 12px;
+}
