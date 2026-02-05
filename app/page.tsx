@@ -36,7 +36,6 @@ function HomeContent() {
     const saved = window.localStorage.getItem("qr-order-table");
     if (saved) {
       setTableCode(saved);
-      setShowTablePrompt(false);
     }
   }, []);
 
@@ -196,9 +195,9 @@ function HomeContent() {
         <div className="fixed inset-0 z-50">
           <div className="absolute inset-0 bg-black/30" />
           <div className="absolute left-0 right-0 top-1/3 mx-auto max-w-sm rounded-3xl bg-white p-6 shadow-2xl border border-[#F3D9B5]">
-            <div className="text-lg font-black">请输入桌号</div>
+            <div className="text-lg font-black">请选择桌号</div>
             <div className="text-xs text-neutral-500 mt-2">
-              例如 A1、B2、C3
+              请选择桌号后进入点餐页面
             </div>
             <div className="mt-4 grid grid-cols-5 gap-2">
               {tableOptions.map((code) => (
@@ -214,22 +213,6 @@ function HomeContent() {
                   {code}
                 </button>
               ))}
-            </div>
-            <div className="mt-4 flex gap-2">
-              <button
-                className="flex-1 h-11 rounded-2xl border border-[#F3D9B5] bg-white text-sm"
-                onClick={() => {
-                  setShowTablePrompt(false);
-                }}
-              >
-                暂不输入
-              </button>
-              <button
-                className="flex-1 h-11 rounded-2xl bg-[#F59E0B] text-white font-black"
-                onClick={() => setShowTablePrompt(false)}
-              >
-                取消
-              </button>
             </div>
           </div>
         </div>
