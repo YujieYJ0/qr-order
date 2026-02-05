@@ -45,6 +45,7 @@ export default function KitchenPage() {
   const [passcode, setPasscode] = useState("");
   const [notice, setNotice] = useState<string | null>(null);
   const [dailyTotal, setDailyTotal] = useState(0);
+  const [confirmDeleteTable, setConfirmDeleteTable] = useState<string | null>(null);
   const client = getSupabaseClient();
   const adminCode = process.env.NEXT_PUBLIC_ADMIN_CODE ?? "";
   const tableCode = useMemo(() => {
@@ -562,12 +563,28 @@ export default function KitchenPage() {
                     已完成
                   </button>
                   <button
-                    onClick={() => deleteTable(table.table_code)}
+                    onClick={() =>
+                      setConfirmDeleteTable((prev) =>
+                        prev === table.table_code ? null : table.table_code
+                      )
+                    }
                     className="flex-1 h-9 rounded-xl border border-rose-200 bg-rose-50 text-rose-600 text-sm font-black"
                     type="button"
                   >
                     删除
                   </button>
+                  {confirmDeleteTable === table.table_code ? (
+                    <button
+                      onClick={() => {
+                        deleteTable(table.table_code);
+                        setConfirmDeleteTable(null);
+                      }}
+                      className="flex-1 h-9 rounded-xl bg-rose-500 text-white text-sm font-black"
+                      type="button"
+                    >
+                      确认
+                    </button>
+                  ) : null}
                 </div>
               </div>
             );
