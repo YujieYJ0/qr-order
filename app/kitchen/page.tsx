@@ -389,9 +389,6 @@ export default function KitchenPage() {
             >
               进入后台
             </button>
-            <div className="mt-3 text-xs text-neutral-400">
-              管理员口令来自环境变量 `NEXT_PUBLIC_ADMIN_CODE`。
-            </div>
             <Link
               href={`/t/${tableCode}`}
               className="absolute left-6 bottom-6 text-xs underline text-neutral-500"
