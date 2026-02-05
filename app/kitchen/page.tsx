@@ -47,6 +47,10 @@ export default function KitchenPage() {
   const [dailyTotal, setDailyTotal] = useState(0);
   const client = getSupabaseClient();
   const adminCode = process.env.NEXT_PUBLIC_ADMIN_CODE ?? "";
+  const tableCode = useMemo(() => {
+    if (typeof window === "undefined") return "1";
+    return window.localStorage.getItem("qr-order-table") || "1";
+  }, []);
 
   const todayKey = useMemo(() => {
     const now = new Date();
@@ -361,7 +365,7 @@ export default function KitchenPage() {
     return (
       <main className="min-h-screen bg-transparent text-neutral-900">
         <div className="max-w-md mx-auto px-5 pt-12">
-          <div className="rounded-3xl bg-white border border-[#F3D9B5] p-6 shadow-sm text-center">
+          <div className="rounded-3xl bg-white border border-[#F3D9B5] p-6 shadow-sm text-center relative">
             <div className="text-xl font-black">后台登录</div>
             <div className="text-xs text-neutral-500 mt-2">
               请输入管理员口令
@@ -388,6 +392,12 @@ export default function KitchenPage() {
             <div className="mt-3 text-xs text-neutral-400">
               管理员口令来自环境变量 `NEXT_PUBLIC_ADMIN_CODE`。
             </div>
+            <Link
+              href={`/t/${tableCode}`}
+              className="absolute left-6 bottom-6 text-xs underline text-neutral-500"
+            >
+              返回
+            </Link>
           </div>
         </div>
       </main>
