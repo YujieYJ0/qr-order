@@ -391,7 +391,7 @@ export default function KitchenPage() {
             </button>
             <Link
               href={`/t/${tableCode}`}
-              className="absolute left-6 bottom-6 text-xs underline text-neutral-500"
+              className="absolute left-6 bottom-3 text-xs underline text-neutral-500"
             >
               返回
             </Link>
