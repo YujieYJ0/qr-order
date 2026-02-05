@@ -8,6 +8,7 @@ import { useMenuData } from "../../lib/useMenuData";
 import { useCart } from "../../components/CartProvider";
 import CartDrawer from "../../components/CartDrawer";
 import MenuImage from "../../components/MenuImage";
+import { flyToCart } from "../../lib/flyToCart";
 
 function TablePageContent() {
   const routeParams = useParams();
@@ -147,7 +148,10 @@ function TablePageContent() {
                           </div>
                           <button
                             className="h-8 w-8 rounded-full bg-[#F59E0B] text-white font-black grid place-items-center"
-                            onClick={() => cart.add(m.id)}
+                            onClick={(e) => {
+                              flyToCart(e.currentTarget, m.img);
+                              cart.add(m.id);
+                            }}
                             aria-label="添加"
                           >
                             +
@@ -174,6 +178,7 @@ function TablePageContent() {
 
       <button
         onClick={() => setOpenCart(true)}
+        id="cart-fab"
         className="phone-fixed z-40 h-14 w-14 rounded-full bg-white text-[#5A3A2E] border border-[#E7C9A4] shadow-xl active:scale-95"
         aria-label="购物车"
       >

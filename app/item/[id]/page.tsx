@@ -8,6 +8,7 @@ import { useMenuData } from "../../lib/useMenuData";
 import { useCart } from "../../components/CartProvider";
 import CartDrawer from "../../components/CartDrawer";
 import MenuImage from "../../components/MenuImage";
+import { flyToCart } from "../../lib/flyToCart";
 
 export default function ItemDetailPage() {
   const { items, loading, source } = useMenuData();
@@ -79,7 +80,10 @@ export default function ItemDetailPage() {
                 <div className="text-sm font-black">{qty}</div>
                 <button
                   className="h-8 w-8 rounded-full bg-[#F59E0B] text-white font-black"
-                  onClick={() => cart.add(item.id)}
+                  onClick={(e) => {
+                    flyToCart(e.currentTarget, item.img);
+                    cart.add(item.id);
+                  }}
                 >
                   +
                 </button>
@@ -149,6 +153,7 @@ export default function ItemDetailPage() {
 
       <button
         onClick={() => setOpenCart(true)}
+        id="cart-fab"
         className="phone-fixed z-40 h-14 w-14 rounded-full bg-white text-[#5A3A2E] border border-[#E7C9A4] shadow-xl active:scale-95"
         aria-label="购物车"
       >
