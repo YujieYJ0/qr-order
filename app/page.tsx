@@ -15,12 +15,7 @@ export default function TableSelectPage() {
     setReady(true);
   }, []);
 
-  const tryEnter = (nextTable: string | null, nextPeople: string | null) => {
-    if (!nextTable || !nextPeople) return;
-    window.localStorage.setItem("qr-order-table", nextTable);
-    window.localStorage.setItem("qr-order-people", nextPeople);
-    router.push(`/t/${nextTable}`);
-  };
+  const canEnter = Boolean(tableCode && peopleCount);
 
   if (!ready) return null;
 
@@ -44,7 +39,6 @@ export default function TableSelectPage() {
                 }`}
                 onClick={() => {
                   setTableCode(code);
-                  tryEnter(code, peopleCount);
                 }}
               >
                 {code}
@@ -66,12 +60,30 @@ export default function TableSelectPage() {
                 }`}
                 onClick={() => {
                   setPeopleCount(count);
-                  tryEnter(tableCode, count);
                 }}
               >
                 {count}
               </button>
             ))}
+          </div>
+          <div className="mt-6 flex justify-center">
+            <button
+              className={`h-12 w-12 rounded-full grid place-items-center shadow-md ${
+                canEnter
+                  ? "bg-[#F59E0B] text-white"
+                  : "bg-[#F1E4D3] text-[#C9B8A7]"
+              }`}
+              aria-label="确认进入"
+              disabled={!canEnter}
+              onClick={() => {
+                if (!tableCode || !peopleCount) return;
+                window.localStorage.setItem("qr-order-table", tableCode);
+                window.localStorage.setItem("qr-order-people", peopleCount);
+                router.push(`/t/${tableCode}`);
+              }}
+            >
+              ✓
+            </button>
           </div>
         </div>
       </div>
