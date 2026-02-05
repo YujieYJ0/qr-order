@@ -149,7 +149,7 @@ export default function ItemDetailPage() {
 
       <button
         onClick={() => setOpenCart(true)}
-        className="phone-fixed z-40 h-14 w-14 rounded-full bg-[#111827] text-white shadow-xl active:scale-95"
+        className="phone-fixed z-40 h-14 w-14 rounded-full bg-white text-[#5A3A2E] border border-[#E7C9A4] shadow-xl active:scale-95"
         aria-label="购物车"
       >
         <span className="text-xl">🛒</span>
