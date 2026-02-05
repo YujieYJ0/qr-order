@@ -16,9 +16,9 @@ export default function TableSelectPage() {
 
   return (
     <main className="min-h-screen bg-transparent">
-      <div className="fixed inset-0 z-50 grid place-items-center">
+      <div className="fixed inset-0 z-50">
         <div className="absolute inset-0 bg-black/35" />
-        <div className="relative w-[92%] max-w-sm rounded-3xl bg-[#FFFDF9] p-6 shadow-2xl border border-[#E7C9A4] text-[#5A3A2E]">
+        <div className="absolute left-1/2 top-1/2 w-[92%] max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-[#FFFDF9] p-6 shadow-2xl border border-[#E7C9A4] text-[#5A3A2E]">
           <div className="text-lg font-black">请选择桌号</div>
           <div className="text-xs text-[#8B6A5A] mt-2">
             请选择桌号后进入点餐页面
