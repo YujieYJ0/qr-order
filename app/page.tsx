@@ -68,7 +68,7 @@ export default function TableSelectPage() {
           </div>
           <div className="mt-6 flex justify-center">
             <button
-              className={`h-12 w-12 rounded-full grid place-items-center shadow-md ${
+              className={`h-12 px-8 rounded-2xl font-black shadow-md ${
                 canEnter
                   ? "bg-[#F59E0B] text-white"
                   : "bg-[#F1E4D3] text-[#C9B8A7]"
@@ -82,7 +82,7 @@ export default function TableSelectPage() {
                 router.push(`/t/${tableCode}`);
               }}
             >
-              ✓
+              确认
             </button>
           </div>
         </div>
