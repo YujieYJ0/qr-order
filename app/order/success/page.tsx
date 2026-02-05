@@ -27,9 +27,6 @@ function OrderSuccessContent() {
             >
               继续点餐
             </Link>
-            <Link href="/kitchen" className="text-sm underline text-neutral-500">
-              查看订单列表
-            </Link>
           </div>
         </div>
       </div>
