@@ -17,6 +17,10 @@ export default function ItemDetailPage() {
   const params = useParams();
   const rawId = Array.isArray(params?.id) ? params?.id[0] : params?.id;
   const id = rawId ? String(rawId) : "";
+  const tableCode =
+    typeof window !== "undefined"
+      ? window.localStorage.getItem("qr-order-table") || "1"
+      : "1";
 
   const item = useMemo(() => items.find((m) => m.id === id), [items, id]);
   const category = CATEGORIES.find((c) => c.key === item?.cat);
@@ -51,7 +55,7 @@ export default function ItemDetailPage() {
     <main className="min-h-screen bg-transparent text-neutral-900">
       <div className="max-w-md mx-auto px-5 pt-6 pb-28">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-sm underline">
+          <Link href={`/t/${tableCode}`} className="text-sm underline">
             ← 返回
           </Link>
           <div className="text-xs text-neutral-500">{category?.label ?? ""}</div>

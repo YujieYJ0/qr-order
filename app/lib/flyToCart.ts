@@ -31,6 +31,9 @@ export function flyToCart(sourceEl: HTMLElement, imageSrc?: string | null) {
 
   document.body.appendChild(fly);
 
+  const midX = (startX + endX) / 2;
+  const midY = Math.min(startY, endY) - 120;
+
   const animation = fly.animate(
     [
       {
@@ -38,12 +41,16 @@ export function flyToCart(sourceEl: HTMLElement, imageSrc?: string | null) {
         opacity: 1,
       },
       {
+        transform: `translate(${midX - 16}px, ${midY - 16}px) scale(0.7)`,
+        opacity: 0.9,
+      },
+      {
         transform: `translate(${endX - 8}px, ${endY - 8}px) scale(0.2)`,
         opacity: 0.2,
       },
     ],
     {
-      duration: 520,
+      duration: 620,
       easing: "cubic-bezier(0.22, 0.61, 0.36, 1)",
     }
   );
